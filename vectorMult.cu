@@ -111,9 +111,9 @@ __global__ void vectorMult<__half2>(const __half2* A, const __half2* B, __half2*
         __half2 temp5 = __lows2half2(temp1, temp3); //  ac | ad
         C[i] = __hadd2(temp4, temp5); // ac - bd | bc + ad
 
-        //__half2 re = hsub(low2half(temp1), high2half(temp1)); // ac - bd
-        //__half2 im = hadd(low2half(temp3), high2half(temp3));// ad + bc
-        //C[i] = halves2half2(re, im);
+        //__half re = __hsub(__low2half(temp1), __high2half(temp1)); // ac - bd
+        //__half im = __hadd(__low2half(temp3), __high2half(temp3));// ad + bc
+        //C[i] = __halves2half2(re, im);
     }
 }
 
