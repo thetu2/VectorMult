@@ -12,12 +12,12 @@ The point of this code is to test various datatypes including a half precision c
 ## Results
 The code was run using an NVIDIA GTX 1080 ti GPU. The number of trials was 10000 and the number of elements to multiply per trial was 50000.
 
-Real:
+Real: 0.128ms
 
-Complex32:
+Complex32: 0.214ms
 
-2x half:
+2x half: 0.127ms
 
-half2:
+half2: 0.127ms (same for both methods)
 
 
