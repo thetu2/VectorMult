@@ -10,7 +10,7 @@
 The point of this code is to test various datatypes including a half precision complex type. To select the datatype to test, set the `TYPE` macro on line 26.
 
 ## Results
-The code was run using an NVIDIA GTX 1080 ti GPU. The number of trials was 10000 and the number of elements to add per trial was 50000.
+The code was run using an NVIDIA GTX 1080 ti GPU. The number of trials was 10000 and the number of elements to multiply per trial was 50000.
 
 Real:
 
