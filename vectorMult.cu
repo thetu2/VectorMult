@@ -223,7 +223,7 @@ main(void)
         fprintf(stderr, "Failed to copy vector A from host to device (error code %s)!\n", cudaGetErrorString(err));
         exit(EXIT_FAILURE);
     }
-
+    cudaEventRecord(start);
     err = cudaMemcpy(d_B, h_B, size, cudaMemcpyHostToDevice);
 
     if (err != cudaSuccess)
@@ -236,9 +236,9 @@ main(void)
     int threadsPerBlock = 256;
     int blocksPerGrid =(numElements + threadsPerBlock - 1) / threadsPerBlock;
     printf("CUDA kernel launch with %d blocks of %d threads\n", blocksPerGrid, threadsPerBlock);
-    cudaEventRecord(start);
+    
     vectorMult<VARTYPE><<<blocksPerGrid, threadsPerBlock>>>(d_A, d_B, d_C, numElements);
-    cudaEventRecord(stop);
+    
     err = cudaGetLastError();
 
 
@@ -253,7 +253,9 @@ main(void)
     // in host memory.
     printf("Copy output data from the CUDA device to the host memory\n");
     err = cudaMemcpy(h_C, d_C, size, cudaMemcpyDeviceToHost);
-
+    
+    cudaEventRecord(stop);
+ 
     cudaEventSynchronize(stop);
     float milliseconds = 0;
     cudaEventElapsedTime(&milliseconds, start, stop);
