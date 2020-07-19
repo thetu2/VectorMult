@@ -35,7 +35,7 @@ struct cmplx16 {
     __half y;
 };
 
-__host__ __device__ inline cmplx16 operator+(const cmplx16& a, const cmplx16& b) {
+__device__ inline cmplx16 operator+(const cmplx16& a, const cmplx16& b) {
     #if COMPCAP >= 530
         const auto x = __hadd(a.x, b.x);
         const auto y = __hadd(a.y, b.y);
@@ -47,7 +47,7 @@ __host__ __device__ inline cmplx16 operator+(const cmplx16& a, const cmplx16& b)
     return answer;
 }
 
-__host__ __device__ inline cmplx16 operator*(const cmplx16& a, const cmplx16& b) {
+__device__ inline cmplx16 operator*(const cmplx16& a, const cmplx16& b) {
 #if COMPCAP >= 530
     const auto x = __hsub(__hmul(a.x, b.x), __hmul(a.y, b.y));
     const auto y = __hadd(__hmul(a.x, b.y), __hmul(a.y, b.x));
